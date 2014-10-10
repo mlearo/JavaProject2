@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 
 public class Account {
+	
 	//declare private variables
-	private String firstName;
-	private String lastName;
 	private int accountNumber;
-	private double totalWithdrawal;
-	private double totalDeposit;
-	private double balance;
-	private double beginningBalance;
+	private double totalWithdrawal, totalDeposit, balance, beginningBalance;
 	private Customer customerReference; 
 	private static String regular = new String("regular");
 	private ArrayList<Transaction> accountTransaction = new ArrayList<>();
+	
+	
+	public String firstName,lastName;
+	
 
 	//constructor
 	public Account(int accountNumber){
@@ -22,8 +22,8 @@ public class Account {
 	
 	
 	//method that receives information about a accounts transactions and places them in arrayList and processes each transaction.
-	public void setTransaction(int transType, int day, double amount)
-	{
+	protected void setTransaction(int transType, int day, double amount)
+	{	
 		this.depositOrWithdrawal(transType, amount);//call method to make deposit or withdrawal
 		
 		//checks if balance is overdrawn
@@ -50,18 +50,7 @@ public class Account {
 		
 	}
 
-	protected void setName(String firstName, String lastName )
-	{
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
-
-	public String getName()
-	{
-		return (this.firstName + " " + this.lastName);
-	}
-
-	public int getAccNum()
+	protected int getAccNum()
 	{
 		return this.accountNumber;
 	}
@@ -84,7 +73,7 @@ public class Account {
 		this.totalWithdrawal += amount;	
 	}
 
-	protected void depositOrWithdrawal(int option, double amount){
+	private void depositOrWithdrawal(int option, double amount){
 		switch(option)
 		{
 			case 1: deposit(amount);
@@ -97,20 +86,21 @@ public class Account {
 		}
 	}
 
-	public double getBalance(){
+	protected double getBalance(){
 		return this.balance;
 	}
 	
-	public void setOwner(Customer customer)
+	protected void setOwner(Customer customer)
 	{
 		this.customerReference = customer;
 	}
 	
-	public Customer getOwner()
+	protected Customer getOwner()
 	{
 		return this.customerReference;
 	}
-	public Double getBeginningBalance()
+	
+	protected double getBeginningBalance()
 	{
 		return this.beginningBalance;
 	}
@@ -140,7 +130,6 @@ public class Account {
 				output += "-----------------------------------\n";
 			}
 		}
-		
 		return output;
 	}
 

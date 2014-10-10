@@ -14,22 +14,22 @@ public class Transaction {
 		this.message = message;
 	}
 	
-	public int getTransType(){
+	protected int getTransType(){
 		
 		return this.transactionType;
 	}
 	
-	public int getTransDay()
+	protected int getTransDay()
 	{
 		return this.transactionDay;
 	}
 	
-	public double getAmount()
+	protected double getAmount()
 	{
 		return this.amount;
 	}
 	
-	public String getMessage()
+	protected String getMessage()
 	{
 		return this.message;
 	}
