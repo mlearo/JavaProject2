@@ -132,3 +132,57 @@ DO NOT USE ARRAYS (although their use would be appropriate for this problem)
 
 
 
+MIS 515.  Spring Fall 2014.  Java Programming assignment #2 – Full program Due October 22, 2014
+
+
+
+Please, correct the errors you had in the previous program before starting this program.  
+
+Objectives: Composition of classes.     Arrays of objects
+
+
+I) Three classes: class Customer, class Account, Class Transaction
+
+Fields of the classes (instance variables)
+
+class Customer: Last name, first name, status (“Premier” or “Regular”)
+
+class Transaction has  4 instance variables:
+   transactionType (a String with value “D” for deposit and value “W” for Withdrawal
+   transactionDay (an int between 1 and 30) 
+   amount (a double)
+  message (a String)
+
+class  Account: similar to previous program with several  modifications of the fields of the class: 
+    1) Customer last name, first name is replaced by a reference to the Customer who owns the account: 
+          Customer owner;  (note: declaring an instance variable in the class Account to be a reference to an 
+          object of the class Customer is called “composition” of classes and is explained in section 8.8, pages 
+          332-334.  We will discuss it   next time.). 
+     2) class Account has a new field, an array of Transaction.  
+     3) You may add more fields as needed.
+
+New methods will be needed  in the Account class.  You figure them out (based on the description below)
+
+II)  The test program has two arrays:  an array of Customer and an array of Account.  There is no array of Transactions in the test program:  the data for each transaction are read in the test program (as described below), but each transaction is set and  processed within an Account object
+
+To simplify, we assume one Account per Customer
+
+Test program structure
+
+Read number of customers and declare and dimension an array of Customer
+Using a loop (while or for), for each customer read last name, first name, status, and create a Customer object referred to by the next entry in the array of Customer
+Declare and dimension  array of accounts (same length as array of Customers)
+Using an outer loop, read the information to create the Account objects:
+read accountNumber; and create an object for this account and an entry in the array of Account
+read the account owner’s  last name, first name; use this information to identify the Customer object and set in the Account object a reference to that Customer object (use a method setOwner in the class Account, with parameters last name, first name).
+read beginning balance and set the appropriate instance variable in the Account object
+ using a nested loop, for each account,  read each transaction type (1 for deposit, -1 for withdrawal, you can use “D”, “W” if you prefer), the day of the month,   the $ amount For each transaction, create an entry in the arrays of Transaction of the specific Account, and process the Account as in assignment #1. If a transaction causes an overdrawn account, set this information in the “message” of the Transaction, and assess a charge of $40 for Regular Customers and a charge of $10 for Premier Customers
+       5. Using an enhanced  for-loop,  execute the printStatement method for each account: (compute, if needed and) print last name, first name, customer status, beginning balance, totalDeposit,  totalWithdrawal, end balance (modified  as needed by overdrawn charges).; display the transactions for each account; for each transaction that causes  an overdrawn charge,  indicate so and the amount
+           
+Data: same as in previous assignment , but add  the following values of status:
+Norbert, Pat: Regular.      Lopez, Andy: Premier.   Pham, Debby: Premier   Crown,  Renee: Regular.
+
+Extra data:  for each transaction of an account, make up the data for the day of the month, in ascending order, between 1 and 30
+
+You may start the program without the array of Transaction.  If you want to stop there, it is a B+ at most.
+
