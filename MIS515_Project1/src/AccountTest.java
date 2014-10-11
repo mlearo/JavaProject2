@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.Scanner; // import scanner class
 
 
@@ -92,7 +93,11 @@ public class AccountTest {
 		
 		for(int i = 0, l = customerList.length; i < l; i++)
 		{
-			System.out.printf("%s",accountList[i].statement());
+			String[] stuff = accountList[i].statement().split("%n");
+			for(String token: stuff)
+			{
+				System.out.println(token);
+			}
 			System.out.printf("-----------------------------------%n");
 		}
 	}

@@ -105,44 +105,67 @@ public class Account {
 		return this.beginningBalance;
 	}
 	
-	//create string of transactions and return it as a string
-	public String getTransactionList()
+	//create string of transactions and return it as a string, needs to be re-factored using StringBuilder.
+
+	
+	public String getTransaction()
 	{
-		String output ="";
+		StringBuilder output = new StringBuilder(200);
 		for(Transaction item: this.accountTransaction)
 		{
-			output += "Day:    " + item.getTransDay() + "\n";
-			output += "Amount: " + item.getAmount() + "\n";
+			int day = item.getTransDay();
+			double amount = item.getAmount();
 			int trans = item.getTransType();
+			
+			output.append("Day:    " + day)
+				  .append("%n")
+				  .append("Amount: " + amount)
+				  .append("%n");
 			if(trans == 1)
 			{
-				output += "Type:   Deposit" + "\n";
+				output.append( "Type:   Deposit")
+					  .append("%n");
 			} else {
-				output += "Type:   Withdrawal" + "\n";
+				output.append("Type:   Withdrawal")
+				      .append("%n");
 			}
-			
 			String isMessage = item.getMessage();
 			if(isMessage != "")
 			{
-				output += "Message:" + item.getMessage() + "\n";
-				output += "-----------------------------------\n";
+				output.append("Message: " + item.getMessage())
+					  .append("%n");
 			} else {
-				output += "-----------------------------------\n";
+				output.append("-----------------------------------%n");
 			}
+			output.append("-----------------------------------%n");
+			
 		}
-		return output;
+		
+		return output.toString();
 	}
-
-	//create statement string and return it to caller
+	
 	public String statement(){
-		String output = "";//declare string variable
-		output += "Name:   " + this.customerReference.getFullName() + "\n";//get first name & last name
-		output += "Status: " + this.customerReference.getStatus().toUpperCase() + "\n";//get status
-		output += "Beginning Balance: " + this.beginningBalance + "\n";//get beginning balance
-		output += "Total Deposits:    " + this.totalDeposit + "\n"; //get total deposit(s)
-		output += "Total Withdrawals: " + this.totalWithdrawal + "\n";//get total withdrawal(s)
-		output += "End Balance:       " + this.balance + "\n"; //get ending balance
-		output += "Transactions:   \n " + this.getTransactionList() + "\n";//get transaction(s)
-		return output;
+		StringBuilder state = new StringBuilder(500);
+		String name = this.customerReference.getFullName();
+		String status = this.customerReference.getStatus().toUpperCase();
+		double begBal = this.beginningBalance;
+		double totDep = this.totalDeposit;
+		double totWith = this.totalWithdrawal;
+		double endBal = this.balance;
+		
+		state.append("Name:    " + name)
+			 .append("%n")
+			 .append("Status:  " + status)
+			 .append("%n")
+			 .append("Beginning Balance: "+ begBal)
+			 .append("%n")
+			 .append("Total Deposit:     " + totDep)
+			 .append("%n")
+			 .append("Total Withdrawals: " + totWith)
+			 .append("%n")
+			 .append("Ending Balance:    " + endBal)
+			 .append("%n")
+			 .append(this.getTransaction());
+		return state.toString();
 	}
 }
