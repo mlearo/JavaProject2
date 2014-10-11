@@ -165,6 +165,8 @@ public class Account {
 			 .append("%n")
 			 .append("Ending Balance:    " + endBal)
 			 .append("%n")
+			 .append("Transactions:")
+			 .append("%n")
 			 .append(this.getTransaction());
 		return state.toString();
 	}

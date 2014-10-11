@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.Scanner; // import scanner class
 
 
@@ -34,6 +33,7 @@ public class AccountTest {
 		//Loop to gather account info and perform transactions
 		for(int count = 0,length = accountList.length; count < length; count++)
 		{
+			
 			
 			int accNumber = getIntegerInput("Please enter your account number: ");// get account number from user and place it into variable
 			accountList[count] = new Account(accNumber); //create new instance of account and place that account in accountList array
@@ -112,11 +112,23 @@ public class AccountTest {
 	//function to get first name from user
 	public static String getStringInput(String message)
 	{
-		System.out.printf("%s %n",message);
-		String stringInput = input.next();
-		return stringInput;	
+		String stringInput;
+		boolean isTrue = true;
+		do{
+			System.out.printf("%s %n",message);
+			stringInput = input.next();
+			isTrue = validateStringInput(stringInput);
+			if(isTrue == false){System.out.println("Please enter only alphabetical characters for the name.");};
+		}while(!isTrue);
+		
+		return stringInput;
+		
 	}
 	
+	public static boolean validateStringInput(String name)
+	{
+		return name.matches("[a-zA-Z]*");
+	}
 	
 	//function to get status of user
 	public static String getCustomerStatus()
